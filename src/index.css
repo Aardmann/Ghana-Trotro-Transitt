@@ -1,0 +1,183 @@
+:root{
+  --purple:#6b21a8;
+  --purple-dark:#5a1590;
+  --muted:#888;
+  --card-bg:#fff;
+  --gap:12px;
+  --max-width:1100px;
+  --shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+html,body,#root { height:100%; margin:0; padding:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f7f7fb; }
+
+.app-root { height:100%; display:flex; flex-direction:column; }
+
+/* Header */
+.app-header { background:var(--purple); color:white; padding:10px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.header-inner { max-width: var(--max-width); margin:0 auto; display:flex; align-items:center; gap:12px; }
+.brand { display:flex; flex-direction:column; }
+.brand-title { font-weight:700; letter-spacing:0.2px; }
+.brand-sub { font-size:12px; opacity:0.9; }
+
+/* Controls */
+.header-controls { display:flex; gap:8px; align-items:center; }
+.select { padding:8px 10px; border-radius:8px; border: none; font-size:14px; }
+.select.small { padding:6px 8px; font-size:13px; }
+.checkbox-inline { display:flex; align-items:center; gap:6px; color:white; font-size:13px; }
+.btn { background:white; color:var(--purple); padding:8px 12px; border-radius:10px; border:none; cursor:pointer; font-weight:600; }
+.btn.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.18); }
+
+/* Main map area */
+.app-main { flex:1; position:relative; overflow:hidden; }
+.map-wrapper { position:absolute; inset:0; }
+
+/* Bottom card - persistent */
+.bottom-card { position:fixed; left:16px; right:16px; bottom:16px; z-index:1200; display:flex; justify-content:center; pointer-events:auto; }
+.card-inner { width:100%; max-width:var(--max-width); background:var(--card-bg); border-radius:14px; padding:16px; box-shadow:var(--shadow); }
+.card-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.route-title { font-weight:700; font-size:15px; color:#222; }
+.route-meta { text-align:right; }
+.fare { color:var(--purple); font-weight:800; }
+.meta-sub { color:var(--muted); font-size:12px; }
+
+/* Legs list */
+.legs-list { margin:12px 0 0 0; padding:0; list-style:none; max-height:220px; overflow:auto; }
+.leg-item { display:flex; justify-content:space-between; padding:10px 0; border-top:1px solid #f1f1f6; font-size:14px; }
+.leg-text { color:#333; }
+.leg-right { color:#333; font-weight:600; }
+
+/* Small messages */
+.msg { color:#b91c1c; margin-bottom:8px; font-size:13px; }
+.no-route { text-align:center; color:#666; }
+
+/* Ensure leaflet container fills area */
+.leaflet-container { height:100%; width:100%; }
+
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+.section h3 {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #444;
+}
+
+.bottom-card {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 45vh; /* takes up less than half the screen height */
+  background: #fff;
+  border-top: 2px solid #ddd;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* scroll if content exceeds height */
+  z-index: 1000;
+  padding: 8px 12px;
+  scroll-behavior: auto;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/* Controls row */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.input,
+.select {
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #0077cc;
+  color: white;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #005fa3;
+}
+
+.legs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leg-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+.hint {
+  font-size: 12px;
+  color: #777;
+  margin: 2px 0;
+}
+
+/* 📱 Responsive design */
+@media (max-width: 1024px) {
+  .bottom-card {
+    max-height: 50vh; /* give more room on smaller screens */
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column; /* stack controls */
+    gap: 6px;
+  }
+
+  .input,
+  .select,
+  .btn {
+    width: 100%; /* full width for easy tapping */
+  }
+
+  .bottom-card {
+    max-height: 60vh; /* allow taller card on phones */
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottom-card {
+    max-height: 70vh; /* small devices can use more height */
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
+
